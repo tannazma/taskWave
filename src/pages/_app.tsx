@@ -1,3 +1,4 @@
+import '../styles/globals.css'
 /** @type {import('tailwindcss').Config} */
 import type { AppProps } from "next/app";
 

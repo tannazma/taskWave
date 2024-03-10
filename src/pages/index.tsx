@@ -31,24 +31,28 @@ const TaskWave = () => {
   ]);
 
   return (
-    <div className="flex flex-col gap-4">
-      <div>
+    <div className="flex flex-col gap-4 p-4">
+      <div className="pb-6 flex justify-center items-center">
         <Fab size="small" color="secondary" aria-label="add">
-          <AddIcon />
+          <AddIcon color="success" />
         </Fab>
+        <span className="pl-4">Add task</span>
       </div>
-      <div className="justify-start">
+      <div className="flex gap-8 flex-col items-center">
         {tasks.map((task) => (
-          <div key={task.id}>
-            <Card sx={{ minWidth: 300 }} className="flex gap-4 items-center">
+          <div key={task.id} className="flex w-[50vw] justify-between">
+            <Card
+              sx={{ minWidth: 300 }}
+              className="flex w-[100%] items-center p-4"
+            >
               <Checkbox {...label} color="secondary" />
-              {task.text}
-              <div className="flex ">
+              <span className="text-left flex-1">{task.text}</span>
+              <div className="flex gap-3 justify-between">
                 <Fab size="small" color="secondary" aria-label="delete">
-                  <DeleteIcon />
+                  <DeleteIcon color="secondary" />
                 </Fab>
                 <Fab size="small" color="secondary" aria-label="edit">
-                  <EditIcon />
+                  <EditIcon color="secondary" />
                 </Fab>
               </div>
             </Card>
