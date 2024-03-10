@@ -73,10 +73,20 @@ const TaskWave = () => {
                 {task.isCompleted}
               </span>
               <div className="flex gap-3 justify-between">
-                <Fab size="small" color="secondary" aria-label="delete">
+                <Fab
+                  size="small"
+                  color="secondary"
+                  aria-label="delete"
+                  disabled={task.isCompleted}
+                >
                   <DeleteIcon color="secondary" />
                 </Fab>
-                <Fab size="small" color="secondary" aria-label="edit">
+                <Fab
+                  size="small"
+                  color="secondary"
+                  aria-label="edit"
+                  disabled={task.isCompleted}
+                >
                   <EditIcon color="secondary" />
                 </Fab>
               </div>
