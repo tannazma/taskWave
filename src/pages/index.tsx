@@ -30,6 +30,17 @@ const TaskWave = () => {
     },
   ]);
 
+  const doneTask = (taskId: number) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, isCompleted: !task.isCompleted };
+        }
+        return task;
+      })
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4 p-4">
       <div className="pb-6 flex justify-center items-center">
@@ -45,8 +56,22 @@ const TaskWave = () => {
               sx={{ minWidth: 300 }}
               className="flex w-[100%] items-center p-4"
             >
-              <Checkbox {...label} color="secondary" />
-              <span className="text-left flex-1">{task.text}</span>
+              <Checkbox
+                {...label}
+                checked={task.isCompleted}
+                color="secondary"
+                onChange={() => doneTask(task.id)}
+              />
+              <span
+                className={
+                  task.isCompleted
+                    ? "text-decoration: line-through text-left flex-1"
+                    : "text-left flex-1"
+                }
+              >
+                {task.text}
+                {task.isCompleted}
+              </span>
               <div className="flex gap-3 justify-between">
                 <Fab size="small" color="secondary" aria-label="delete">
                   <DeleteIcon color="secondary" />
