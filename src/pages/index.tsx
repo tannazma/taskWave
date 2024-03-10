@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import AssignmentIcon from "@material-ui/icons/Assignment";
-import { Box, Checkbox, Fab } from "@mui/material";
+import { Box, Card, Checkbox, Fab } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -31,24 +31,26 @@ const TaskWave = () => {
   ]);
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <Fab size="small" color="secondary" aria-label="add">
         <AddIcon />
       </Fab>
-      <Box sx={{ "& > :not(style)": { m: 1 } }}>
+      <div >
         {tasks.map((task) => (
-          <div key={task.id} className="flex col justify-start">
-            <Checkbox {...label} defaultChecked color="secondary" />
-            {task.text}
-            <Fab size="small" color="secondary" aria-label="delete">
-              <DeleteIcon />
-            </Fab>
-            <Fab size="small" color="secondary" aria-label="edit">
-              <EditIcon />
-            </Fab>
-          </div>
+          <Card sx={{ minWidth: 300 }} className="flex gap-4 items-center">
+            <div key={task.id}>
+              <Checkbox {...label} color="secondary" />
+              {task.text}
+              <Fab size="small" color="secondary" aria-label="delete">
+                <DeleteIcon />
+              </Fab>
+              <Fab size="small" color="secondary" aria-label="edit">
+                <EditIcon />
+              </Fab>
+            </div>
+          </Card>
         ))}
-      </Box>
+      </div>
     </div>
   );
 };
