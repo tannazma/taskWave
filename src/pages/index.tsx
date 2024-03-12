@@ -40,12 +40,15 @@ const TaskWave = () => {
       })
     );
   };
+  const deleteTask = (taskId: number) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
 
   return (
     <div className="flex flex-col gap-4 p-4">
       <div className="pb-6 flex justify-center items-center">
         <Fab size="small" color="secondary" aria-label="add">
-          <AddIcon color="success" />
+          <AddIcon color="action" />
         </Fab>
         <span className="pl-4">Add task</span>
       </div>
@@ -79,7 +82,10 @@ const TaskWave = () => {
                   aria-label="delete"
                   disabled={task.isCompleted}
                 >
-                  <DeleteIcon color="secondary" />
+                  <DeleteIcon
+                    color="secondary"
+                    onClick={() => deleteTask(task.id)}
+                  />
                 </Fab>
                 <Fab
                   size="small"
