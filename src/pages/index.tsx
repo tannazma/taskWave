@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import AssignmentIcon from "@material-ui/icons/Assignment";
-import { Box, Card, Checkbox, Fab } from "@mui/material";
+import { Card, Checkbox, Fab } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -62,8 +62,10 @@ const TaskWave = () => {
   };
 
   const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      addTask();
+    }
   };
-
   return (
     <div className="flex flex-col gap-4 p-4">
       <div className="pb-6 flex justify-center items-center">
@@ -81,6 +83,7 @@ const TaskWave = () => {
             onChange={(e) => setNewTaskText(e.target.value)}
             value={newTaskText}
             type="text"
+            onKeyPress={handleKeyPress}
           />
         )}
       </div>
@@ -134,4 +137,5 @@ const TaskWave = () => {
     </div>
   );
 };
+
 export default TaskWave;
