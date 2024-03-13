@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import AssignmentIcon from "@material-ui/icons/Assignment";
-import { Card, Checkbox, Fab } from "@mui/material";
+import { Card, Checkbox, Fab, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -67,18 +67,23 @@ const TaskWave = () => {
     }
   };
   return (
-    <div className="flex flex-col gap-4 p-4">
-      <div className="pb-6 flex justify-center items-center">
+    <div className="flex flex-col gap-4 pt-6">
+      <div className="flex justify-center items-center">
         <Fab
           size="small"
           color="secondary"
           aria-label="add"
-          onClick={() => setShowInput(true)}
+          onClick={() => setShowInput(!showInput)}
         >
           <AddIcon color="action" />
         </Fab>
         {showInput && (
-          <input
+          <TextField
+            id="outlined-basic"
+            color="secondary"
+            // label="Standard"
+            variant="standard"
+            className="pl-3 transition duration-8 hover:duration-400 ease-in-out animate-[wiggle_1s_ease-in-out_infinite]"
             autoFocus
             onChange={(e) => setNewTaskText(e.target.value)}
             value={newTaskText}
