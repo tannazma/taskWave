@@ -30,6 +30,22 @@ const TaskWave = () => {
     },
   ]);
 
+  const [showInput, setShowInput] = useState(false);
+  const [newTaskText, setNewTaskText] = useState("");
+
+  const addTask = () => {
+    const newTask = {
+      id: tasks.length + 1,
+      text: newTaskText,
+      isCompleted: false,
+    };
+    if (newTask.text.trim() !== "") {
+      setTasks([...tasks, newTask]);
+      setNewTaskText("");
+      setShowInput(false);
+    }
+  };
+
   const doneTask = (taskId: number) => {
     setTasks(
       tasks.map((task) => {
@@ -45,25 +61,28 @@ const TaskWave = () => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
-  const addTask = () => {
-    const newTaskText = [prompt("Please add new task")];
-    if (newTaskText) {
-      const newTask = {
-        id: tasks.length + 1,
-        text: newTaskText,
-        isCompleted: false,
-      };
-      setTasks([...tasks, newTask]);
-    }
+  const handleKeyPress = (e) => {
   };
 
   return (
     <div className="flex flex-col gap-4 p-4">
       <div className="pb-6 flex justify-center items-center">
-        <Fab size="small" color="secondary" aria-label="add" onClick={addTask}>
+        <Fab
+          size="small"
+          color="secondary"
+          aria-label="add"
+          onClick={() => setShowInput(true)}
+        >
           <AddIcon color="action" />
         </Fab>
-        <span className="pl-4">Add task</span>
+        {showInput && (
+          <input
+            autoFocus
+            onChange={(e) => setNewTaskText(e.target.value)}
+            value={newTaskText}
+            type="text"
+          />
+        )}
       </div>
       <div className="flex gap-8 flex-col items-center">
         {tasks.map((task) => (
