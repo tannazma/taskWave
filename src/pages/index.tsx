@@ -40,14 +40,27 @@ const TaskWave = () => {
       })
     );
   };
+
   const deleteTask = (taskId: number) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
+  };
+
+  const addTask = () => {
+    const newTaskText = [prompt("Please add new task")];
+    if (newTaskText) {
+      const newTask = {
+        id: tasks.length + 1,
+        text: newTaskText,
+        isCompleted: false,
+      };
+      setTasks([...tasks, newTask]);
+    }
   };
 
   return (
     <div className="flex flex-col gap-4 p-4">
       <div className="pb-6 flex justify-center items-center">
-        <Fab size="small" color="secondary" aria-label="add">
+        <Fab size="small" color="secondary" aria-label="add" onClick={addTask}>
           <AddIcon color="action" />
         </Fab>
         <span className="pl-4">Add task</span>
@@ -73,7 +86,6 @@ const TaskWave = () => {
                 }
               >
                 {task.text}
-                {task.isCompleted}
               </span>
               <div className="flex gap-3 justify-between">
                 <Fab
